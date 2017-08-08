@@ -10,7 +10,8 @@ PACKAGES = setuptools.find_packages(where='src')
 META_PATH = os.path.join('src', 'bio2bel_uniprot', '__init__.py')
 INSTALL_REQUIRES = [
     'pybel_tools',
-    'ols_client',
+    'pyuniprot',
+    'click',
 ]
 ENTRY_POINTS = {
     'console_scripts': [
