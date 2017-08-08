@@ -19,11 +19,12 @@ def iterate_accessions():
     """
     query = pyuniprot.query()
 
-    entries = query.get_entry()
+    all_accessions =  query.get_accession()
 
-    for entry in entries:
-        for accession in entry.accessions:
-            yield accession.accession
+
+    query.get_entry()
+    for accession in all_accessions:
+        yield accession.accession
 
 
 def write_uniprot_belns(file):
