@@ -15,7 +15,7 @@ from .run import deploy_to_arty, write_uniprot_belns
 
 @click.group()
 def main():
-    """Output gene family hierarchy as BEL script and BEL namespace"""
+    """UniProt to BEL"""
     logging.basicConfig(level=10, format="%(asctime)s - %(levelname)s - %(message)s")
 
 
