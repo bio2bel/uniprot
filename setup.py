@@ -14,6 +14,9 @@ INSTALL_REQUIRES = [
     'click',
 ]
 ENTRY_POINTS = {
+    'bio2bel': [
+        'uniprot = bio2bel_uniprot',
+    ],
     'console_scripts': [
         'bio2bel_uniprot = bio2bel_uniprot.cli:main',
     ]

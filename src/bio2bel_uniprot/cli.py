@@ -33,9 +33,10 @@ def write(output):
 
 
 @main.command()
-def arty():
+def deploy():
     """Deploy to artifactory"""
-    deploy_to_arty()
+    success = deploy_to_arty()
+    click.echo('Deployed to {}'.format(success) if success else 'Duplicate not deployed')
 
 
 if __name__ == '__main__':

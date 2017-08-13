@@ -49,10 +49,14 @@ def write_uniprot_belns(file):
 
 
 def deploy_to_arty():
-    """Gets the data and writes BEL namespace file to artifactory"""
+    """Gets the data and writes BEL namespace file to artifactory
+
+    :return: The resource path, if it was deployed successfully, else none.
+    :rtype: str
+    """
     file_name = get_today_arty_namespace(MODULE_NAME)
 
     with open(file_name, 'w') as file:
         write_uniprot_belns(file)
 
-    deploy_namespace(file_name, MODULE_NAME)
+    return deploy_namespace(file_name, MODULE_NAME)
