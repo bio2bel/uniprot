@@ -8,8 +8,9 @@ import logging
 import sys
 
 import click
-import pyuniprot
 
+import pyuniprot
+from .constants import DEFAULT_CACHE_CONNECTION
 from .run import deploy_to_arty, write_uniprot_belns
 
 
@@ -17,12 +18,6 @@ from .run import deploy_to_arty, write_uniprot_belns
 def main():
     """UniProt to BEL"""
     logging.basicConfig(level=10, format="%(asctime)s - %(levelname)s - %(message)s")
-
-
-@main.command()
-def update():
-    """Update PyUniProt data"""
-    pyuniprot.update()
 
 
 @main.command()
@@ -37,6 +32,14 @@ def deploy():
     """Deploy to artifactory"""
     success = deploy_to_arty()
     click.echo('Deployed to {}'.format(success) if success else 'Duplicate not deployed')
+
+
+@main.command()
+@click.option('-c', '--connection', help="Defaults to {}".format(DEFAULT_CACHE_CONNECTION))
+@click.option('-t', '--tax-id', help='Keep this taxonomy identifier. Can specify multiple', multiple=True)
+def populate(connection, tax_id):
+    """Populate the database"""
+    pyuniprot.update(connection=connection, taxids=tax_id)
 
 
 if __name__ == '__main__':
