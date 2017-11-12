@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 
 import pyuniprot
-
 from pybel.constants import NAMESPACE_DOMAIN_GENE
-from pybel_tools.definition_utils import write_namespace
-from pybel_tools.resources import deploy_namespace, get_today_arty_namespace
+from pybel.resources.arty import get_today_arty_namespace
+from pybel.resources.definitions import write_namespace
+from pybel.resources.deploy import deploy_namespace
 
 MODULE_NAME = 'uniprot'
 
@@ -19,8 +19,7 @@ def iterate_accessions():
     """
     query = pyuniprot.query()
 
-    all_accessions =  query.get_accession()
-
+    all_accessions = query.get_accession()
 
     query.get_entry()
     for accession in all_accessions:
