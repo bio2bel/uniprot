@@ -10,8 +10,8 @@ from pyuniprot.manager.database import DbManager
 from pyuniprot.manager.models import *
 
 
-def add_admin(app, session, url=None):
-    admin = flask_admin.Admin(app, url=(url or '/'))
+def add_admin(app, session, **kwargs):
+    admin = flask_admin.Admin(app, **kwargs)
     admin.add_view(ModelView(Entry, session))
     admin.add_view(ModelView(OtherGeneName, session))
     admin.add_view(ModelView(Sequence, session))

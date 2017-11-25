@@ -12,6 +12,7 @@ INSTALL_REQUIRES = [
     'pybel>=0.9.5',
     'pyuniprot',
     'click',
+    'bio2bel',
 ]
 ENTRY_POINTS = {
     'bio2bel': [
