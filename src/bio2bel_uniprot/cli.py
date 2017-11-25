@@ -9,7 +9,6 @@ import sys
 
 import click
 
-import pyuniprot
 from .constants import DEFAULT_CACHE_CONNECTION
 from .run import deploy_to_arty, write_uniprot_belns
 
@@ -21,16 +20,18 @@ def main():
 
 
 @main.command()
+@click.option('-c', '--connection', help="Defaults to {}".format(DEFAULT_CACHE_CONNECTION))
 @click.option('-o', '--output', type=click.File('w'), default=sys.stdout)
-def write(output):
+def write(connection, output):
     """Writes the UniProt accession name space"""
-    write_uniprot_belns(output)
+    write_uniprot_belns(output, connection=connection)
 
 
 @main.command()
-def deploy():
-    """Deploy to artifactory"""
-    success = deploy_to_arty()
+@click.option('-c', '--connection', help="Defaults to {}".format(DEFAULT_CACHE_CONNECTION))
+def deploy(connection):
+    """Deploy to Artifactory"""
+    success = deploy_to_arty(connection=connection)
     click.echo('Deployed to {}'.format(success) if success else 'Duplicate not deployed')
 
 
@@ -39,6 +40,7 @@ def deploy():
 @click.option('-t', '--tax-id', help='Keep this taxonomy identifier. Can specify multiple', multiple=True)
 def populate(connection, tax_id):
     """Populate the database"""
+    import pyuniprot
     pyuniprot.update(connection=connection, taxids=tax_id)
 
 

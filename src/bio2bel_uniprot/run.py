@@ -9,29 +9,28 @@ from pybel.resources.deploy import deploy_namespace
 MODULE_NAME = 'uniprot'
 
 
-def iterate_accessions():
+def iterate_accessions(connection=None):
     """Iterates over uniprot accessions
 
     For example: ``P62258``, ``B3KY71``, and ``D3DTH5``
 
-    :return: An iterator over the UniProt acessions
+    :return: An iterator over the UniProt accession numbers
     :rtype: iter[str]
     """
-    query = pyuniprot.query()
+    manager = pyuniprot.manager.query.QueryManager(connection=connection)
 
-    all_accessions = query.get_accession()
+    all_accessions = manager.get_accession()
 
-    query.get_entry()
     for accession in all_accessions:
         yield accession.accession
 
 
-def write_uniprot_belns(file):
+def write_uniprot_belns(file, connection=None):
     """Writes the UniProt accession BEL namespaces to a file
 
     :param file file: A write-enabled file or file-like
     """
-    values = iterate_accessions()
+    values = iterate_accessions(connection=connection)
 
     write_namespace(
         namespace_name='UniProt',
@@ -47,7 +46,7 @@ def write_uniprot_belns(file):
     )
 
 
-def deploy_to_arty():
+def deploy_to_arty(connection=None):
     """Gets the data and writes BEL namespace file to artifactory
 
     :return: The resource path, if it was deployed successfully, else none.
@@ -56,6 +55,6 @@ def deploy_to_arty():
     file_name = get_today_arty_namespace(MODULE_NAME)
 
     with open(file_name, 'w') as file:
-        write_uniprot_belns(file)
+        write_uniprot_belns(file, connection=connection)
 
     return deploy_namespace(file_name, MODULE_NAME)
