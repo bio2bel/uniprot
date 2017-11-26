@@ -10,6 +10,7 @@ import sys
 import click
 
 from .constants import DEFAULT_CACHE_CONNECTION
+from .manager import Manager
 from .run import deploy_to_arty, write_uniprot_belns
 
 
@@ -37,11 +38,13 @@ def deploy(connection):
 
 @main.command()
 @click.option('-c', '--connection', help="Defaults to {}".format(DEFAULT_CACHE_CONNECTION))
-@click.option('-t', '--tax-id', help='Keep this taxonomy identifier. Can specify multiple', multiple=True)
+@click.option('-t', '--tax-id', default=['9606'], multiple=True,
+              help='Keep this taxonomy identifier. Can specify multiple. Defaults to just human.')
 def populate(connection, tax_id):
     """Populate the database"""
-    import pyuniprot
-    pyuniprot.update(connection=connection, taxids=tax_id)
+    manager = Manager(connection=connection)
+    manager.populate(taxids=tax_id)
+    manager.session.close()
 
 
 if __name__ == '__main__':

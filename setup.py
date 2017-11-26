@@ -13,6 +13,7 @@ INSTALL_REQUIRES = [
     'pyuniprot',
     'click',
     'bio2bel',
+    'sqlalchemy',
 ]
 ENTRY_POINTS = {
     'bio2bel': [

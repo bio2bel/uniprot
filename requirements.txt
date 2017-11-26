@@ -2,3 +2,4 @@ pybel>=0.9.5
 pyuniprot
 click
 bio2bel
+sqlalchemy
