@@ -31,7 +31,7 @@ def add_admin(app, session, **kwargs):
     return admin
 
 
-def create_app(connection=None, url=None):
+def create_application(connection=None, url=None):
     """Creates a Flask application
 
     :type connection: Optional[str]
@@ -44,5 +44,5 @@ def create_app(connection=None, url=None):
 
 
 if __name__ == '__main__':
-    app = create_app()
+    app = create_application()
     app.run(debug=True, host='0.0.0.0', port=5000)

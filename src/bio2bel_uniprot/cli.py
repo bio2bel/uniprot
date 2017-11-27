@@ -47,5 +47,16 @@ def populate(connection, tax_id):
     manager.session.close()
 
 
+@main.command()
+@click.option('-c', '--connection', help='Defaults to {}'.format(DEFAULT_CACHE_CONNECTION))
+@click.option('-h', '--host', default='0.0.0.0')
+@click.option('-p', '--port', type=int, default=5000)
+def web(connection, host, port):
+    """Run the web app"""
+    from .web import create_application
+    app = create_application(connection=connection, url='/')
+    app.run(host=host, port=port)
+
+
 if __name__ == '__main__':
     main()
