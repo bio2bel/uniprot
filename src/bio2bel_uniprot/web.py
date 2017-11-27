@@ -6,8 +6,8 @@ import flask_admin
 from flask import Flask
 from flask_admin.contrib.sqla import ModelView
 
-from pyuniprot.manager.database import DbManager
 from pyuniprot.manager.models import *
+from .manager import Manager
 
 
 def add_admin(app, session, **kwargs):
@@ -38,7 +38,7 @@ def create_application(connection=None, url=None):
     :rtype: flask.Flask
     """
     app = Flask(__name__)
-    manager = DbManager(connection=connection)
+    manager = Manager(connection=connection)
     add_admin(app, manager.session, url=url)
     return app
 
