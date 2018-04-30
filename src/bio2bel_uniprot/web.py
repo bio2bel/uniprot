@@ -2,15 +2,13 @@
 
 """ This module contains the flask application to visualize the db"""
 
-import flask_admin
-from flask import Flask
-from flask_admin.contrib.sqla import ModelView
-
 from pyuniprot.manager.models import *
 from .manager import Manager
 
 
 def add_admin(app, session, **kwargs):
+    import flask_admin
+    from flask_admin.contrib.sqla import ModelView
     admin = flask_admin.Admin(app, **kwargs)
     admin.add_view(ModelView(Entry, session))
     admin.add_view(ModelView(OtherGeneName, session))
@@ -31,18 +29,7 @@ def add_admin(app, session, **kwargs):
     return admin
 
 
-def create_application(connection=None, url=None):
-    """Creates a Flask application
-
-    :type connection: Optional[str]
-    :rtype: flask.Flask
-    """
-    app = Flask(__name__)
-    manager = Manager(connection=connection)
-    add_admin(app, manager.session, url=url)
-    return app
-
-
 if __name__ == '__main__':
-    app = create_application()
+    manager = Manager()
+    app = manager.get_flask_admin_app()
     app.run(debug=True, host='0.0.0.0', port=5000)
