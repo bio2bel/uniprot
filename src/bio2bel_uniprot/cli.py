@@ -4,7 +4,7 @@
 
 from .manager import Manager
 
-main = build_cli(Manager)
+main = Manager.get_cli()
 
 if __name__ == '__main__':
     main()
