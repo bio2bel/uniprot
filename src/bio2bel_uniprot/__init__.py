@@ -1,6 +1,10 @@
 # -*- coding: utf-8 -*-
 
-from . import cli
+from .manager import Manager
+
+__all__ = [
+    'Manager',
+]
 
 __version__ = '0.0.1-dev'
 

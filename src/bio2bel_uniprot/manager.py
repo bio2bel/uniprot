@@ -2,7 +2,7 @@
 
 import pyuniprot
 from bio2bel import AbstractManager, get_connection
-from pyuniprot.manager.models import *
+from pyuniprot.manager.models import Entry, Base, Disease
 from pyuniprot.manager.query import QueryManager
 from .constants import MODULE_NAME
 
@@ -32,6 +32,12 @@ class _PyUniProtManager(QueryManager):
 class Manager(AbstractManager, _PyUniProtManager):
     module_name = MODULE_NAME
     flask_admin_models = [Entry, Disease]
+
+    def _base(self):
+        return Base
+
+    def is_populated(self):
+        return 0 < self._count_model(Entry)
 
     def populate(self, *args, **kwargs):
         """Updates the CTD database
