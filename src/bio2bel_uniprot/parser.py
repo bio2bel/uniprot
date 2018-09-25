@@ -31,5 +31,5 @@ get_mappings_df = make_df_getter(MAPPINGS_URL, MAPPINGS_PATH, sep='\t')
 22. Additional PubMed
 """
 
-SLIM_COLUMNS = ['UniProtKB-AC', 'UniProtKB-ID', 'GeneID']
-get_slim_mappings_df = make_df_getter(MAPPINGS_URL, MAPPINGS_PATH, sep='\t', usecols=[0, 1, 2], names=SLIM_COLUMNS)
+SLIM_COLUMNS = ['UniProtKB-AC', 'UniProtKB-ID', 'GeneID', 'NCBI-Taxon']
+get_slim_mappings_df = make_df_getter(MAPPINGS_URL, MAPPINGS_PATH, sep='\t', usecols=[0, 1, 2, 12], names=SLIM_COLUMNS)
