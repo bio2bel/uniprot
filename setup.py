@@ -13,6 +13,7 @@ INSTALL_REQUIRES = [
     'click',
     'bio2bel',
     'sqlalchemy',
+    'pandas',
 ]
 ENTRY_POINTS = {
     'bio2bel': [

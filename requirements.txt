@@ -2,3 +2,4 @@ pybel>=0.12.0
 click
 bio2bel
 sqlalchemy
+pandas
