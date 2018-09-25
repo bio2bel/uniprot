@@ -1,9 +1,12 @@
 # -*- coding: utf-8 -*-
 
+from typing import Optional
+
 import pyuniprot
-from bio2bel import AbstractManager, get_connection
-from pyuniprot.manager.models import Entry, Base, Disease
+from pyuniprot.manager.models import Base, Disease, Entry
 from pyuniprot.manager.query import QueryManager
+
+from bio2bel import AbstractManager
 from .constants import MODULE_NAME
 
 
@@ -36,7 +39,7 @@ class Manager(AbstractManager, _PyUniProtManager):
     def _base(self):
         return Base
 
-    def is_populated(self):
+    def is_populated(self) -> bool:
         return 0 < self._count_model(Entry)
 
     def populate(self, *args, **kwargs):
@@ -54,11 +57,7 @@ class Manager(AbstractManager, _PyUniProtManager):
         """
         self.db_import_xml(*args, **kwargs)
 
-    def get_protein_by_uniprot_id(self, uniprot_id):
-        """Gets a UniProt entry by its identifier
-
-        :param str uniprot_id:
-        :rtype: Optional[pyuniprot.manager.models.Entry]
-        """
+    def get_protein_by_uniprot_id(self, uniprot_id: str) -> Optional[Entry]:
+        """Get a UniProt entry by its identifier."""
         results = self.entry(name=uniprot_id)
         return _deal_with_nonsense(results)

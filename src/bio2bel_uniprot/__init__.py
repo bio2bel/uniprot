@@ -1,10 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from .manager import Manager
-
-__all__ = [
-    'Manager',
-]
+from .parser import get_slim_mappings_df
 
 __version__ = '0.0.1-dev'
 

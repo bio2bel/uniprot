@@ -9,18 +9,17 @@ import setuptools
 PACKAGES = setuptools.find_packages(where='src')
 META_PATH = os.path.join('src', 'bio2bel_uniprot', '__init__.py')
 INSTALL_REQUIRES = [
-    'pybel>=0.9.5',
-    'pyuniprot',
+    'pybel>=0.12.0',
     'click',
     'bio2bel',
     'sqlalchemy',
 ]
 ENTRY_POINTS = {
     'bio2bel': [
-        'uniprot = bio2bel_uniprot',
+        # 'uniprot = bio2bel_uniprot',
     ],
     'console_scripts': [
-        'bio2bel_uniprot = bio2bel_uniprot.cli:main',
+        # 'bio2bel_uniprot = bio2bel_uniprot.cli:main',
     ]
 }
 
@@ -70,4 +69,5 @@ if __name__ == '__main__':
         package_dir={'': 'src'},
         install_requires=INSTALL_REQUIRES,
         entry_points=ENTRY_POINTS,
+        zip_safe=False,
     )
