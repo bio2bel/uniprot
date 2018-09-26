@@ -18,8 +18,8 @@ or from the latest code on `GitHub <https://github.com/bio2bel/uniprot>`_ with:
     $ python3 -m pip install git+https://github.com/bio2bel/uniprot.git@master
 
 
-.. |build| image:: https://travis-ci.org/bio2bel/uniprot.svg?branch=master
-    :target: https://travis-ci.org/bio2bel/uniprot
+.. |build| image:: https://travis-ci.com/bio2bel/uniprot.svg?branch=master
+    :target: https://travis-ci.com/bio2bel/uniprot
     :alt: Build Status
 
 .. |coverage| image:: https://codecov.io/gh/bio2bel/uniprot/coverage.svg?branch=master
