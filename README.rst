@@ -17,25 +17,6 @@ or from the latest code on `GitHub <https://github.com/bio2bel/uniprot>`_ with:
 
     $ python3 -m pip install git+https://github.com/bio2bel/uniprot.git@master
 
-Setup
------
-uniprot can be downloaded and populated from either the Python REPL or the automatically installed command line
-utility.
-
-Python REPL
-~~~~~~~~~~~
-.. code-block:: python
-
-    >>> import bio2bel_uniprot
-    >>> uniprot_manager = bio2bel_uniprot.Manager()
-    >>> uniprot_manager.populate()
-
-Command Line Utility
-~~~~~~~~~~~~~~~~~~~~
-.. code-block:: bash
-
-    bio2bel_uniprot populate
-
 
 .. |build| image:: https://travis-ci.org/bio2bel/uniprot.svg?branch=master
     :target: https://travis-ci.org/bio2bel/uniprot
