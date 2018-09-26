@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+"""Setup.py for Bio2BEL UniProt."""
+
 import codecs
 import os
 import re
@@ -8,11 +10,20 @@ import setuptools
 
 PACKAGES = setuptools.find_packages(where='src')
 META_PATH = os.path.join('src', 'bio2bel_uniprot', '__init__.py')
+KEYWORDS = ['Biological Expression Language', 'BEL', 'Systems Biology', 'Networks Biology', 'InterPro']
+CLASSIFIERS = [
+    'Development Status :: 4 - Beta',
+    'Environment :: Console',
+    'Intended Audience :: Developers',
+    'Intended Audience :: Science/Research',
+    'License :: OSI Approved :: MIT License',
+    'Operating System :: OS Independent',
+    'Programming Language :: Python',
+    'Programming Language :: Python :: 3.6',
+    'Topic :: Scientific/Engineering :: Bio-Informatics'
+]
 INSTALL_REQUIRES = [
-    'pybel>=0.12.0',
-    'click',
     'bio2bel',
-    'sqlalchemy',
     'pandas',
 ]
 ENTRY_POINTS = {
@@ -37,7 +48,7 @@ META_FILE = read(META_PATH)
 
 
 def find_meta(meta):
-    """Extract __*meta*__ from META_FILE"""
+    """Extract __*meta*__ from META_FILE."""
     meta_match = re.search(
         r'^__{meta}__ = ["\']([^"\']*)["\']'.format(meta=meta),
         META_FILE, re.M
@@ -66,6 +77,8 @@ if __name__ == '__main__':
         maintainer=find_meta('author'),
         maintainer_email=find_meta('email'),
         license=find_meta('license'),
+        classifiers=CLASSIFIERS,
+        keywords=KEYWORDS,
         packages=PACKAGES,
         package_dir={'': 'src'},
         install_requires=INSTALL_REQUIRES,

@@ -41,6 +41,7 @@ _get_slim_mappings_df = make_df_getter(MAPPINGS_URL, MAPPINGS_PATH, sep='\t', us
 
 
 def get_slim_mappings_df() -> pd.DataFrame:
+    """Get mappings between UniProt accession, identifier, Entrez gene, and NCBI taxonomny."""
     if os.path.exists(SLIM_MAPPINGS_PATH):
         with open(SLIM_MAPPINGS_PATH, 'rb') as f:
             return pickle.load(f)
