@@ -1,3 +1,7 @@
+# -*- coding: utf-8 -*-
+
+"""Test functions that get data."""
+
 import os
 import unittest
 
@@ -11,5 +15,6 @@ class TestGet(unittest.TestCase):
     """Test getting data."""
 
     def test_get_mappings(self):
+        """Test getting the full mappings file."""
         df = get_mappings_df(url=URL)
         self.assertEqual(6, len(df.index))
