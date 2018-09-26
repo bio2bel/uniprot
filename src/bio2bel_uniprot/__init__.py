@@ -4,7 +4,7 @@
 
 from .parser import get_mappings_df, get_slim_mappings_df  # noqa: F401
 
-__version__ = '0.0.1-dev'
+__version__ = '0.0.1'
 
 __title__ = 'bio2bel_uniprot'
 __description__ = "A package for downloading, parsing, storing, and serializing UniProt"
