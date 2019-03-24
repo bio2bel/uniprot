@@ -11,6 +11,11 @@ import pandas as pd
 from bio2bel.downloading import make_df_getter
 from .constants import MAPPINGS_PATH, MAPPINGS_URL, SLIM_MAPPINGS_PATH
 
+__all__ = [
+    'get_mappings_df',
+    'get_slim_mappings_df',
+]
+
 get_mappings_df = make_df_getter(MAPPINGS_URL, MAPPINGS_PATH, sep='\t', header=None)
 """Returns a file with the following columns:
 1. UniProtKB-AC

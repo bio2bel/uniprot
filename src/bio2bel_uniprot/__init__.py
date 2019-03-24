@@ -2,6 +2,7 @@
 
 """Bio2BEL UniProt is a package for downloading, parsing, storing, and serializing UniProt."""
 
+from .manager import Manager  # noqa: F401
 from .parser import get_mappings_df, get_slim_mappings_df  # noqa: F401
 
 __version__ = '0.0.3-dev'
