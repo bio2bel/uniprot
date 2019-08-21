@@ -42,12 +42,12 @@ get_mappings_df = make_df_getter(MAPPINGS_URL, MAPPINGS_PATH, sep='\t', header=N
 22. Additional PubMed
 """
 
-SLIM_COLUMNS = ['UniProtKB-AC', 'UniProtKB-ID', 'GeneID', 'NCBI-Taxon']
+SLIM_COLUMNS = ['UniProtKB-ID', 'UniProtKB-AC', 'GeneID', 'NCBI-Taxon']
 _get_slim_mappings_df = make_df_getter(MAPPINGS_URL, MAPPINGS_PATH, sep='\t', usecols=[0, 1, 2, 12], names=SLIM_COLUMNS)
 
 
 def get_slim_mappings_df(url: Optional[str] = None) -> pd.DataFrame:
-    """Get mappings between UniProt accession, identifier, Entrez gene, and NCBI taxonomy."""
+    """Get mappings between UniProt identifier, UniProt entry name, Entrez identifier, and NCBI taxonomy identifier."""
     if os.path.exists(SLIM_MAPPINGS_PATH):
         with open(SLIM_MAPPINGS_PATH, 'rb') as f:
             return pickle.load(f)
